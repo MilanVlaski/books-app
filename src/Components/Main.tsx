@@ -1,22 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import axios from "axios";
 
 const Main = () => {
   const [search, setSearch] = useState("");
-  const [bookData, setData] = useState([]);
+  const [bookData, setBookData] = useState([]);
 
-  const searchBook = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      axios
-        .get(
-          "https://www.googleapis.com/books/v1/volumes?q=" +
-            search +
-            "&key=AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA"
-        )
-        .then((res) => setData(res.data.items))
-        .catch((err) => console.log(err));
-    }
+  const searchBook = (byAuthor: boolean) => {
+    let query: string =
+      "https://www.googleapis.com/books/v1/volumes?q=" +
+      (byAuthor ? "+inauthor:" : "") +
+      search +
+      "&key=AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA" +
+      "&maxResults=40";
+    axios
+      .get(query)
+      .then((res) => setBookData(res.data.items))
+      .catch((err) => console.log(err));
+    console.log(query);
+  };
+
+  const handleSearchByTitle = () => {
+    searchBook(false);
+  };
+
+  const handleSearchByAuthor = () => {
+    searchBook(true);
   };
 
   return (
@@ -33,16 +42,18 @@ const Main = () => {
               placeholder="Enter your book or author name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={searchBook}
             />
-            <button>
-              <i className="fas fa-search"></i>
-            </button>
+          </div>
+          <div className="searchBtns">
+            <button onClick={handleSearchByTitle}>Search by title</button>
+            <button onClick={handleSearchByAuthor}>Search by author</button>
           </div>
           <img src="./images/bg2.jpg" alt="" />
         </div>
       </div>
-      <div className="container">{<Card book={bookData} />}</div>
+      <div className="container">
+        {bookData && bookData.length > 0 && <Card book={bookData} />}
+      </div>
     </>
   );
 };
