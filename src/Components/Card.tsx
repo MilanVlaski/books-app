@@ -6,6 +6,7 @@ interface Book {
     authors?: string[];
     imageLinks: {
       smallThumbnail: string;
+      thumbnail: string;
     };
   };
 }
@@ -18,7 +19,7 @@ const Card = ({ book }: Props) => {
   return (
     <>
       {book.map((item) => {
-        const thumbnail = item.volumeInfo?.imageLinks?.smallThumbnail || "";
+        const thumbnail = item.volumeInfo?.imageLinks?.thumbnail || "";
         const title = item.volumeInfo?.title || "Unknown Title";
         const author = item.volumeInfo?.authors?.[0] || "Unknown Author";
         return (

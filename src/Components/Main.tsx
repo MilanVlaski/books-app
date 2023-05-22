@@ -7,17 +7,19 @@ const Main = () => {
   const [bookData, setBookData] = useState([]);
 
   const searchBook = (byAuthor: boolean) => {
-    let query: string =
-      "https://www.googleapis.com/books/v1/volumes?q=" +
-      (byAuthor ? "+inauthor:" : "") +
-      search +
-      "&key=AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA" +
-      "&maxResults=40";
-    axios
-      .get(query)
-      .then((res) => setBookData(res.data.items))
-      .catch((err) => console.log(err));
-    console.log(query);
+    if (search.length > 0) {
+      let query: string =
+        "https://www.googleapis.com/books/v1/volumes?q=" +
+        (byAuthor ? "+inauthor:" : "") +
+        search +
+        "&key=AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA" +
+        "&maxResults=40";
+      axios
+        .get(query)
+        .then((res) => setBookData(res.data.items))
+        .catch((err) => console.log(err));
+      console.log(query);
+    }
   };
 
   const handleSearchByTitle = () => {
@@ -48,7 +50,7 @@ const Main = () => {
             <button onClick={handleSearchByTitle}>Search by title</button>
             <button onClick={handleSearchByAuthor}>Search by author</button>
           </div>
-          <img src="./images/bg2.jpg" alt="" />
+          <img src="./images/bg3.jpg" alt="" />
         </div>
       </div>
       <div className="container">
