@@ -1,14 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const Card = () => {
+interface Props {
+  book: Object[];
+}
+
+const Card = ({ book }: Props) => {
   return (
     <>
-      <div className="card">
-        <img src="./images/testcover.jpg" alt="" />
-        <div className="bottom">
-          <h3 className="title">Test title</h3>
-        </div>
-      </div>
+      {book.map((item) => {
+        return (
+          <div className="card">
+            <img src="./images/testcover.jpg" alt="" />
+            <div className="bottom">
+              <h3 className="title">Test title</h3>
+            </div>
+          </div>
+        );
+      })}
     </>
   );
 };
