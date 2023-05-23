@@ -18,7 +18,6 @@ const Main = () => {
         .get(query)
         .then((res) => setBookData(res.data.items))
         .catch((err) => console.log(err));
-      console.log(query);
     }
   };
 
@@ -30,27 +29,37 @@ const Main = () => {
     searchBook(true);
   };
 
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") searchBook(false);
+  };
+
   return (
     <>
       <div className="header">
         <div className="row1">
-          <h1>I know that I know nothing.</h1>
+          <h1>
+            A reader lives a thousand lives
+            <br />
+            before he dies.
+          </h1>
         </div>
         <div className="row2">
           <h2>Search for books</h2>
           <div className="search">
             <input
               type="text"
-              placeholder="Enter your book or author name"
+              placeholder="Enter name of book or author"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => handleEnter(e)}
             />
           </div>
           <div className="searchBtns">
             <button onClick={handleSearchByTitle}>Search by title</button>
             <button onClick={handleSearchByAuthor}>Search by author</button>
           </div>
-          <img src="./images/bg3.jpg" alt="" />
+          <img className="img1" src="./images/bg2.jpg" alt="" />
+          <img className="img2" src="./images/bg4.jpg" alt="" />
         </div>
       </div>
       <div className="container">
