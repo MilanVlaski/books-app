@@ -6,7 +6,7 @@ const Main = () => {
   const [search, setSearch] = useState("");
   const [bookData, setBookData] = useState([]);
 
-  const searchBook = (byAuthor: boolean) => {
+  const searchBook = (byAuthor?: boolean) => {
     if (search.length > 0) {
       let query: string =
         "https://www.googleapis.com/books/v1/volumes?q=" +
@@ -19,7 +19,6 @@ const Main = () => {
         .get(query)
         .then((res) => {
           setBookData(res.data.items);
-          console.log(res.data.items);
         })
         .catch((err) => console.log(err));
     }
@@ -34,7 +33,7 @@ const Main = () => {
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") searchBook(false);
+    if (e.key === "Enter") searchBook();
   };
 
   return (
