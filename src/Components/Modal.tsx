@@ -24,8 +24,11 @@ const Modal = ({ show, item, onClose, relatedBooks }: Props) => {
       <div className="overlay">
         <div className="overlay-inner">
           <div className="related-books">
-            <h2>Similar books</h2>
-            {relatedBooks && <Card book={relatedBooks} />}
+            {relatedBooks && (
+              <>
+                <h2>Similar books</h2> <Card book={relatedBooks} />
+              </>
+            )}
           </div>
           <button className="close" onClick={onClose}></button>
           <div className="inner-box">
