@@ -13,7 +13,7 @@ const Card = ({ book }: Props) => {
   const [bookData, setBookData] = useState([]);
 
   const searchByCategory = (item: Book) => {
-    const category = bookItem?.volumeInfo?.categories?.[0];
+    const category = item?.volumeInfo?.categories?.[0];
     let query: string =
       "https://www.googleapis.com/books/v1/volumes?q=" +
       "+subject:" +
