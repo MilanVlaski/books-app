@@ -17,10 +17,10 @@ const Main = () => {
       axios
         .get(query)
         .then((res) => {
-          setBookData(res.data.items), console.log(res.data.items);
+          setBookData(res.data.items);
+          console.log(res.data.items);
         })
         .catch((err) => console.log(err));
-      console.log(query);
     }
   };
 

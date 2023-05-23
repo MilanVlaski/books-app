@@ -23,6 +23,10 @@ const Modal = ({ show, item, onClose, relatedBooks }: Props) => {
     <>
       <div className="overlay">
         <div className="overlay-inner">
+          <div className="related-books">
+            <h2>Similar books</h2>
+            {relatedBooks && <Card book={relatedBooks} />}
+          </div>
           <button className="close" onClick={onClose}></button>
           <div className="inner-box">
             <img src={thumbnail} alt="" />
@@ -44,10 +48,6 @@ const Modal = ({ show, item, onClose, relatedBooks }: Props) => {
             </div>
           </div>
           <h4 className="description">{description}</h4>
-          <div className="related-books">
-            <h2>Related Books</h2>
-            <Card book={relatedBooks} />
-          </div>
         </div>
       </div>
     </>
