@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { ReactNode, useState } from "react";
+import { API_KEY } from "./Main";
 import Modal from "./Modal";
 import Book from "./types";
 
@@ -18,7 +19,8 @@ const Card = ({ book }: Props) => {
       "https://www.googleapis.com/books/v1/volumes?q=" +
       "+subject:" +
       category +
-      "&key=AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA" +
+      "&key=" +
+      API_KEY +
       "&maxResults=10";
     axios
       .get(query)

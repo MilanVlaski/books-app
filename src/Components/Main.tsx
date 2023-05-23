@@ -12,7 +12,8 @@ const Main = () => {
         "https://www.googleapis.com/books/v1/volumes?q=" +
         (byAuthor ? "+inauthor:" : "") +
         search +
-        "&key=AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA" +
+        "&key=" +
+        API_KEY +
         "&maxResults=40";
       axios
         .get(query)
@@ -73,3 +74,4 @@ const Main = () => {
 };
 
 export default Main;
+export const API_KEY: string = "AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA";
