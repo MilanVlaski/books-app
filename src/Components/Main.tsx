@@ -73,4 +73,4 @@ const Main = () => {
 };
 
 export default Main;
-export const API_KEY: string = "INSERT_API_KEY_HERE";
+export const API_KEY: string = "AIzaSyBYS7T8pJIg0UiL0dr9pKmgkUeTnqVgjIA";
