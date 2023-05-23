@@ -34,6 +34,9 @@ html{
     clip-path: circle(60% at left 300px);
     z-index: -1;
 }
+div.row1 h1{
+    text-align: left;
+}
 .row2{
     position: absolute;
     top: 10px;
