@@ -6,10 +6,12 @@ interface Props {
   show: boolean;
   item?: Book;
   onClose: () => void;
+  relatedBooks: Book[];
 }
 
-const Modal = ({ show, item, onClose }: Props) => {
+const Modal = ({ show, item, onClose, relatedBooks }: Props) => {
   if (!show) return null;
+  const id = item?.volumeInfo.id;
   const thumbnail = item?.volumeInfo?.imageLinks?.thumbnail || "";
   const title = item?.volumeInfo?.title || "Unknown Title";
   const authors = item?.volumeInfo?.authors;
@@ -27,8 +29,8 @@ const Modal = ({ show, item, onClose }: Props) => {
             <div className="info">
               <h1>{title}</h1>
               <div className="authors">
-                {authors?.map((item) => (
-                  <h3>{item}</h3>
+                {authors?.map((item, index) => (
+                  <h3 key={index}>{item}</h3>
                 ))}
               </div>
               <br />
@@ -42,6 +44,10 @@ const Modal = ({ show, item, onClose }: Props) => {
             </div>
           </div>
           <h4 className="description">{description}</h4>
+          <div className="related-books">
+            <h2>Related Books</h2>
+            <Card book={relatedBooks} />
+          </div>
         </div>
       </div>
     </>

@@ -16,8 +16,11 @@ const Main = () => {
         "&maxResults=40";
       axios
         .get(query)
-        .then((res) => setBookData(res.data.items))
+        .then((res) => {
+          setBookData(res.data.items), console.log(res.data.items);
+        })
         .catch((err) => console.log(err));
+      console.log(query);
     }
   };
 
